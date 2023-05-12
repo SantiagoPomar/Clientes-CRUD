@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div style="text-align: center;">
+      <h1><strong>Lista de Clientes</strong></h1>
+    </div>
+
+    <div style="text-align: right">
+      <button mat-mini-fab color="primary" routerLink="/spClient/spNew"><mat-icon>plus_one</mat-icon></button>
+    </div>
+    <table mat-table [dataSource]="spdataSource" class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="spID">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="spName">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.spName}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="spAddress">
+        <th mat-header-cell *matHeaderCellDef> Dirección </th>
+        <td mat-cell *matCellDef="let element"> {{element.spAddress}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="spPhone">
+        <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+        <td mat-cell *matCellDef="let element"> {{element.spPhone}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="spEmail">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.spEmail}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="spYearOfBirth">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+        <td mat-cell *matCellDef="let element"> {{element?.spYearOfBirth}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="spDni">
+        <th mat-header-cell *matHeaderCellDef> DNI </th>
+        <td mat-cell *matCellDef="let element"> {{element.spDni}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones1">
+          <th mat-header-cell *matHeaderCellDef> Mostrar </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" [routerLink]="['spView',element.id]">Mostrar</button>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones2">
+        <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" [routerLink]="['spEdit',element.id]">Actualizar</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="spdisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: spdisplayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator  [pageSizeOptions]="[5, 10]" aria-label="Select page of users"></mat-paginator>
+
+
+  </div>
+</body>
+
+</html>
+
